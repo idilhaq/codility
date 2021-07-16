@@ -1,0 +1,39 @@
+// you can also use imports, for example:
+import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public int solution(int N) {
+        int binaryGap = 0;
+        String binaryN = Integer.toBinaryString(N);
+        char[] binaryArr = new char [binaryN.length()];
+        for(int i = 0; i < binaryN.length(); i++){
+            binaryArr[i] = binaryN.charAt(i);
+        }
+        
+        int start = 0;
+        int counter = 0;
+        List<Integer> tempSolution = new ArrayList<Integer>();
+        for(int e = 0; e < binaryArr.length; e++){
+            if(binaryArr[e] == '1'){
+                if(start == 1){
+                    tempSolution.add(counter);
+                    counter = 0;
+                }else{
+                    start = 1;
+                }
+            }else{
+                if(start == 1){
+                    counter++;
+                }
+            }
+        }
+        if(tempSolution.size() > 0){
+            Collections.sort(tempSolution);
+            binaryGap = tempSolution.get(tempSolution.size() - 1);
+        }
+        return binaryGap;
+    }
+}
