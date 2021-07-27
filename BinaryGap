@@ -6,6 +6,7 @@ import java.util.*;
 
 class Solution {
     public int solution(int N) {
+        // write your code in Java SE 8
         int binaryGap = 0;
         String binaryN = Integer.toBinaryString(N);
         char[] binaryArr = new char [binaryN.length()];
@@ -15,11 +16,13 @@ class Solution {
         
         int start = 0;
         int counter = 0;
-        List<Integer> tempSolution = new ArrayList<Integer>();
+        int result = 0;
         for(int e = 0; e < binaryArr.length; e++){
             if(binaryArr[e] == '1'){
                 if(start == 1){
-                    tempSolution.add(counter);
+                    if(counter > result){
+                        result = counter;
+                    }
                     counter = 0;
                 }else{
                     start = 1;
@@ -30,10 +33,6 @@ class Solution {
                 }
             }
         }
-        if(tempSolution.size() > 0){
-            Collections.sort(tempSolution);
-            binaryGap = tempSolution.get(tempSolution.size() - 1);
-        }
-        return binaryGap;
+        return result;
     }
 }
