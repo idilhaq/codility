@@ -1,11 +1,10 @@
 class Solution {
     public int solution(int X, int Y, int D) {
         // write your code in Java SE 8
-        int counter = 0;
-        while(X < Y){
-            X = X + D;
-            counter++;
+        int jump = (Y - X) / D;
+        if(jump % D != 0){
+            jump++;
         }
-        return counter;
+        return jump;
     }
 }
